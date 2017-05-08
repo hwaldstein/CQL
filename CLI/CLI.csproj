@@ -5,17 +5,19 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4943754E-C940-41EA-A71F-7B3CF56EC287}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{6B4F7A15-1E5D-4FB1-AC9B-CFDB6132C6C8}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CQL</RootNamespace>
-    <AssemblyName>CQL</AssemblyName>
+    <RootNamespace>CLI</RootNamespace>
+    <AssemblyName>CLI</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -25,6 +27,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -45,10 +48,6 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -60,57 +59,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CQL.g4.lexer.cs">
-      <DependentUpon>CQL.g4</DependentUpon>
-    </Compile>
-    <Compile Include="CQL.g4.parser.cs">
-      <DependentUpon>CQL.g4</DependentUpon>
-    </Compile>
-    <Compile Include="Enums\AtomicExpressionType.cs" />
-    <Compile Include="Enums\ExpressionOperator.cs" />
-    <Compile Include="Enums\OrderByType.cs" />
-    <Compile Include="Enums\SourceType.cs" />
-    <Compile Include="Exceptions\InvalidDepartmentException.cs" />
-    <Compile Include="Interfaces\IAtomicExpression.cs" />
-    <Compile Include="Models\AtomicExpressions\CourseNumberSelectExpression.cs" />
-    <Compile Include="Models\AtomicExpressions\DepartmentSelectExpression.cs" />
-    <Compile Include="Models\AtomicExpressions\GenEdSelectExpression.cs" />
-    <Compile Include="Models\AtomicExpressions\IsHonorsSelectExpression.cs" />
-    <Compile Include="Models\Expression.cs" />
-    <Compile Include="Models\Operators\EquivalenceOperator.cs" />
-    <Compile Include="Models\Operators\InequalityOperator.cs" />
-    <Compile Include="Models\Operators\MembershipOperator.cs" />
-    <Compile Include="Models\Root.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Visitors\AtomicExpressionVisitor.cs" />
-    <Compile Include="Visitors\BooleanVisitor.cs" />
-    <Compile Include="Visitors\Operators\EquivalenceOperatorVisitor.cs" />
-    <Compile Include="Visitors\Operators\InequalityOperatorVisitor.cs" />
-    <Compile Include="Visitors\Operators\MembershipOperatorVisitor.cs" />
-    <Compile Include="Visitors\AtomicExpressions\CourseNumberSelectExpressionVisitor.cs" />
-    <Compile Include="Visitors\AtomicExpressions\DepartmentSelectExpressionVisitor.cs" />
-    <Compile Include="Visitors\ExpressionVisitor.cs" />
-    <Compile Include="Visitors\OrderByVisitor.cs" />
-    <Compile Include="Visitors\RootVisitor.cs" />
-    <Compile Include="Visitors\AtomicExpressions\GenEdSelectExpressionVisitor.cs" />
-    <Compile Include="Visitors\AtomicExpressions\IsHonorsSelectExpressionVisitor.cs" />
-    <Compile Include="Visitors\SourceVisitor.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Antlr4 Include="CQL.g4">
-      <Generator>MSBuild:Compile</Generator>
-      <CustomToolNamespace>CQL</CustomToolNamespace>
-    </Antlr4>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CQL\CQL.csproj">
+      <Project>{4943754e-c940-41ea-a71f-7b3cf56ec287}</Project>
+      <Name>CQL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Data\Data.csproj">
       <Project>{6BB4FEC4-876E-4D46-968E-6BEB08C34EE3}</Project>
       <Name>Data</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
