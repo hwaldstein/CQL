@@ -1,15 +1,24 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Data.Enums;
 using Data.Interfaces;
 using Data.Models.Session;
 
 namespace Data.Sources
 {
-    public class Fall2017Context : DbContext, ISource
+    public abstract class AbstractCourseSectionContext : DbContext, ICourseSectionDB
     {
+        public AbstractCourseSectionContext(string arg) : base(arg)
+        {
+            
+        }
+
         public DbSet<CourseSection> CourseSections { get; set; }
+
         public IQueryable<ICourse> IsHonors()
         {
             return CourseSections.Where(x => x.IsHonors);

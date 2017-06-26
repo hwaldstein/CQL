@@ -53,21 +53,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Sources\CatalogApi.cs" />
-    <Compile Include="Migrations\201705080658338_initial.cs" />
-    <Compile Include="Migrations\201705080658338_initial.Designer.cs">
-      <DependentUpon>201705080658338_initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705080700204_remove-index.cs" />
-    <Compile Include="Migrations\201705080700204_remove-index.Designer.cs">
-      <DependentUpon>201705080700204_remove-index.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Interfaces\ICourseSectionDB.cs" />
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Sources\AbstractCourseSectionContext.cs" />
+    <Compile Include="Sources\CatalogApi.cs" />
     <Compile Include="Models\Catalog\CatalogCourse.cs" />
     <Compile Include="Sources\SessionApi.cs" />
     <Compile Include="Models\Session\CourseSectionDTO.cs" />
     <Compile Include="Models\Session\CourseSection.cs" />
-    <Compile Include="Sources\Fall2017Context.cs" />
+    <Compile Include="Sources\Spring2017Context.cs" />
     <Compile Include="Models\Session\Instructor.cs" />
     <Compile Include="Models\Session\SessionApiResponse.cs" />
     <Compile Include="Models\Session\TimeAndLocation.cs" />
@@ -81,14 +75,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201705080658338_initial.resx">
-      <DependentUpon>201705080658338_initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705080700204_remove-index.resx">
-      <DependentUpon>201705080700204_remove-index.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

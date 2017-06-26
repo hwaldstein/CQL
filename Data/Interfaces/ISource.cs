@@ -1,5 +1,7 @@
-﻿using System.Linq;
+﻿using System.Data.Entity;
+using System.Linq;
 using Data.Enums;
+using Data.Models.Session;
 
 namespace Data.Interfaces
 {

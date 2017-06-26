@@ -16,7 +16,7 @@ namespace CQL.Visitors
             if (context.source() == null)
             {
                 //source = new SessionApi(Season.FALL, 2017);
-                source = new Fall2017Context();
+                source = new Spring2017Context();
             }
             else
             {

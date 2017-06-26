@@ -1,5 +1,3 @@
-using Data.Sources;
-
 namespace Data.Migrations
 {
     using System;
@@ -7,14 +5,14 @@ namespace Data.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Fall2017Context>
+    internal sealed class Configuration : DbMigrationsConfiguration<Data.Sources.Spring2017Context>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(Fall2017Context context)
+        protected override void Seed(Data.Sources.Spring2017Context context)
         {
             //  This method will be called after migrating to the latest version.
 
