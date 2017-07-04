@@ -1,0 +1,38 @@
+﻿namespace Lexer
+{
+    public enum TokenType
+    {
+        EOF,
+        Or,
+        And,
+        Not,
+        Bang,
+        LParen,
+        RParen,
+        Equals,
+        NotEquals,
+        Like,
+        NotLike,
+        LT,
+        GT,
+        LTEQ,
+        GTEQ,
+        In,
+        Is,
+        LBracket,
+        Int,
+        Float,
+        RBracket,
+        Empty,
+        Word,
+        Quotedstring,
+        Comma,
+        Order,
+        By,
+        Desc,
+        Asc,
+        Minus,
+        Plus,
+        WhiteSpace
+    }
+}

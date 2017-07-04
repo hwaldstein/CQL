@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DFE66AFF-39CB-452A-B8F0-008C6B257102}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>uiowa.maui</RootNamespace>
+    <AssemblyName>uiowa.maui</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.2-beta2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.105.2.3\lib\net452\RestSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="api\AcademicUnit.cs" />
+    <Compile Include="api\ApiBase.cs" />
+    <Compile Include="api\APIReader.cs" />
+    <Compile Include="api\AstraBldgRmCompleteList.cs" />
+    <Compile Include="api\AstraRoomData.cs" />
+    <Compile Include="api\AstraRoomSchedule.cs" />
+    <Compile Include="api\CatalogCourse.cs" />
+    <Compile Include="api\ChangeOfCollegeForm.cs" />
+    <Compile Include="api\Course.cs" />
+    <Compile Include="api\CourseGroup.cs" />
+    <Compile Include="api\CourseSection.cs" />
+    <Compile Include="api\CourseSubject.cs" />
+    <Compile Include="api\DeoGradeWorkflowList.cs" />
+    <Compile Include="api\dto\documentation\Api.cs" />
+    <Compile Include="api\dto\documentation\Documentation.cs" />
+    <Compile Include="api\dto\documentation\Resource.cs" />
+    <Compile Include="api\dto\registrar\courses\AcademicUnitDTO.cs" />
+    <Compile Include="api\dto\registrar\courses\AdditionalInfo.cs" />
+    <Compile Include="api\dto\registrar\courses\Person.cs" />
+    <Compile Include="api\dto\registrar\courses\UnitTypeLookup.cs" />
+    <Compile Include="api\dto\registrar\course\Course.cs" />
+    <Compile Include="api\dto\registrar\sessions\SessionDTO.cs" />
+    <Compile Include="api\ExamSchedule.cs" />
+    <Compile Include="api\FacilityBuilding.cs" />
+    <Compile Include="api\GradeWorkflowList.cs" />
+    <Compile Include="api\InstructorSections.cs" />
+    <Compile Include="api\IsisNews.cs" />
+    <Compile Include="api\Lookup.cs" />
+    <Compile Include="api\ProgramOfStudy.cs" />
+    <Compile Include="api\Session.cs" />
+    <Compile Include="api\SessionDate.cs" />
+    <Compile Include="api\TransferCourses.cs" />
+    <Compile Include="api\TuitionFees.cs" />
+    <Compile Include="api\UBillBatchPrintPub.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="api\ProgramOfStudyProgram.cs" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="api\dto\admissions\changeOfCollege\" />
+    <Folder Include="api\dto\billing\tuitionfees\" />
+    <Folder Include="api\dto\billing\ubillBatchPrint\" />
+    <Folder Include="api\dto\facilityBuilding\" />
+    <Folder Include="api\dto\isis\transfer-courses\" />
+    <Folder Include="api\dto\lookups\" />
+    <Folder Include="api\dto\registrar\academicunits\" />
+    <Folder Include="api\dto\registrar\catalog\" />
+    <Folder Include="api\dto\registrar\cic\" />
+    <Folder Include="api\dto\registrar\coursesubjects\" />
+    <Folder Include="api\dto\registrar\courses\AstraBldgRmCompleteList\" />
+    <Folder Include="api\dto\registrar\courses\AstraRoomData\" />
+    <Folder Include="api\dto\registrar\courses\AstraRoomSchedule\" />
+    <Folder Include="api\dto\registrar\courses\deogradeworkflowlist\" />
+    <Folder Include="api\dto\registrar\courses\gradeworkflowlist\" />
+    <Folder Include="api\dto\registrar\exam-schedule\" />
+    <Folder Include="api\dto\registrar\instructor\" />
+    <Folder Include="api\dto\registrar\isisnews\" />
+    <Folder Include="api\dto\registrar\program-of-study\program\" />
+    <Folder Include="api\dto\registrar\sections\" />
+    <Folder Include="api\dto\registrar\session-dates\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
