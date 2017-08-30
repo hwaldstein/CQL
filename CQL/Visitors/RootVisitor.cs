@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using CQL.Enums;
 using CQL.Models;
+using Data.Enums;
 using Data.Interfaces;
 using Data.Models.Session;
 using Data.Sources;
@@ -15,8 +16,7 @@ namespace CQL.Visitors
             ISource source = null;
             if (context.source() == null)
             {
-                //source = new SessionApi(Season.FALL, 2017);
-                source = new Spring2017Context();
+                source = new SessionApi(Season.FALL, 2017);
             }
             else
             {

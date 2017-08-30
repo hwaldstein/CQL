@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using Data.Enums;
 using Data.Models.Session;
 using Data.Sources;
 using Newtonsoft.Json;
@@ -18,7 +19,7 @@ namespace DatabasePopulator
         {
             List<Populator> populators = new List<Populator>
             {
-                new Populator(new Spring2017Context(), Spring2017Context.SessionId)
+                new Populator(new Fall2017Context(), Fall2017Context.SessionId)
             };
 
             foreach (Populator populator in populators)

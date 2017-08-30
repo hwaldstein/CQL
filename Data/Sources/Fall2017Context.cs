@@ -10,12 +10,9 @@ using Data.Models.Session;
 
 namespace Data.Sources
 {
-    public abstract class AbstractCourseSectionContext : DbContext, ICourseSectionDB
+    public class Fall2017Context : DbContext, ICourseSectionDB
     {
-        public AbstractCourseSectionContext(string arg) : base(arg)
-        {
-            
-        }
+        public static int SessionId = 68;
 
         public DbSet<CourseSection> CourseSections { get; set; }
 

@@ -27,6 +27,26 @@ CS_courses = [1210, 2210, 2230, 2630, 2800, 2820, 3210, 3330, 3620, 3640, 3700, 
               5430, 5610, 5620, 5630, 5710, 5720, 5800, 5810, 5820, 5830, 5850, 5860, 5980, 5990]
 
 
+class Department:
+    """
+    Represents a department at the University of Iowa
+    """
+
+    def __init__(self, DepartmentCode):
+        """
+        Builds a department
+        :param DepartmentCode: e.g. MATH
+        """
+        self.Code = DepartmentCode
+        self.Courses = []
+
+    def add_course(self, course):
+        self.Courses.append(course)
+
+    def to_json(self):
+        return json.dumps(self, default=lambda o: o.__dict__, indent=4)
+
+
 class Course:
     """
     Represents a course at the University of Iowa
@@ -199,14 +219,18 @@ class Course:
 
 
 def populate_courses():
-    subjects = ["MATH", "CS"]
     for subject in subjects:
+        department = Department(subject)
         page = requests.get('http://catalog.registrar.uiowa.edu/courses/' + subject.lower() + '/')
         parsed_html = html.fromstring(page.content)
-        raw_courses = parsed_html.xpath('//*[@id="sc_sccoursedescs"]/div')
+        raw_courses = parsed_html.xpath('//*[@class="sc_sccoursedescs"]/div')
 
         for raw_course in raw_courses:
             course = Course(raw_course)
-            print(course.to_database_insert_line())
+            department.add_course(course)
+
+        f = open("C:\\Users\\harle\\Desktop\\Courses\\" + subject + ".json", 'w')
+        json.dump(department, f, default=lambda o: o.__dict__, indent=4)
+
 
 populate_courses()
