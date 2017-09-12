@@ -72,9 +72,9 @@
       <Project>{4943754e-c940-41ea-a71f-7b3cf56ec287}</Project>
       <Name>CQL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Data\Data.csproj">
+    <ProjectReference Include="..\Data\Common.csproj">
       <Project>{6BB4FEC4-876E-4D46-968E-6BEB08C34EE3}</Project>
-      <Name>Data</Name>
+      <Name>Common</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

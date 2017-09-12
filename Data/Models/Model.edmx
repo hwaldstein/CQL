@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CourseSchedulerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="RawCatalog1718">
+          <Key>
+            <PropertyRef Name="Subject" />
+            <PropertyRef Name="Number" />
+          </Key>
+          <Property Name="Subject" Type="nvarchar" MaxLength="4" Nullable="false" />
+          <Property Name="Number" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="99" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="1142" Nullable="false" />
+          <Property Name="Hours" Type="nvarchar" MaxLength="11" Nullable="false" />
+          <Property Name="Offered" Type="nvarchar" MaxLength="70" />
+          <Property Name="Prerequisites" Type="nvarchar" MaxLength="504" />
+          <Property Name="Corequisites" Type="nvarchar" MaxLength="114" />
+          <Property Name="Requirements" Type="nvarchar" MaxLength="533" />
+          <Property Name="Recommendations" Type="nvarchar" MaxLength="222" />
+          <Property Name="GE" Type="nvarchar" MaxLength="71" />
+          <Property Name="SameAs" Type="nvarchar" MaxLength="120" />
+        </EntityType>
+        <EntityContainer Name="CourseSchedulerModelStoreContainer">
+          <EntitySet Name="RawCatalog1718" EntityType="Self.RawCatalog1718" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CourseSchedulerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="RawCatalog1718">
+          <Key>
+            <PropertyRef Name="Subject" />
+            <PropertyRef Name="Number" />
+          </Key>
+          <Property Name="Subject" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Number" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="99" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="1142" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Hours" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Offered" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+          <Property Name="Prerequisites" Type="String" MaxLength="504" FixedLength="false" Unicode="true" />
+          <Property Name="Corequisites" Type="String" MaxLength="114" FixedLength="false" Unicode="true" />
+          <Property Name="Requirements" Type="String" MaxLength="533" FixedLength="false" Unicode="true" />
+          <Property Name="Recommendations" Type="String" MaxLength="222" FixedLength="false" Unicode="true" />
+          <Property Name="GE" Type="String" MaxLength="71" FixedLength="false" Unicode="true" />
+          <Property Name="SameAs" Type="String" MaxLength="120" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="CourseSchedulerEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="RawCatalog1718" EntityType="Self.RawCatalog1718" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CourseSchedulerModelStoreContainer" CdmEntityContainer="CourseSchedulerEntities">
+          <EntitySetMapping Name="RawCatalog1718">
+            <EntityTypeMapping TypeName="CourseSchedulerModel.RawCatalog1718">
+              <MappingFragment StoreEntitySet="RawCatalog1718">
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Hours" ColumnName="Hours" />
+                <ScalarProperty Name="Offered" ColumnName="Offered" />
+                <ScalarProperty Name="Prerequisites" ColumnName="Prerequisites" />
+                <ScalarProperty Name="Corequisites" ColumnName="Corequisites" />
+                <ScalarProperty Name="Requirements" ColumnName="Requirements" />
+                <ScalarProperty Name="Recommendations" ColumnName="Recommendations" />
+                <ScalarProperty Name="GE" ColumnName="GE" />
+                <ScalarProperty Name="SameAs" ColumnName="SameAs" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

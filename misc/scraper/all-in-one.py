@@ -2,6 +2,7 @@ import requests
 from lxml import html
 import re
 import json
+import csv
 
 # noinspection SpellCheckingInspection
 subjects = ['ABRD', 'ACB', 'ACCT', 'ACTS', 'AERO', 'AFAM', 'AINS', 'AMCS', 'AMST', 'ANES', 'ANIM', 'ANTH', 'ARAB',
@@ -46,11 +47,33 @@ class Department:
     def to_json(self):
         return json.dumps(self, default=lambda o: o.__dict__, indent=4)
 
+    def to_csv(self):
+        with open("C:\\Users\\harle\\Desktop\\Courses\\" + self.Code + ".csv", 'w', newline='', encoding='utf-8') as csvfile:
+            writer = csv.writer(csvfile)
+
+            writer.writerow(["Subject", "Number", "Name", "Description", "Hours", "Offered", "Prerequisites",
+                            "Corequisites", "Requirements", "Recommendations", "GE", "SameAs"])
+
+            for course in self.Courses:
+                writer.writerow([None if course.Subject is None else course.Subject,
+                                None if course.Number is None else course.Number,
+                                None if course.Name is None else course.Name,
+                                None if course.Description is None else course.Description,
+                                None if course.Hours is None else course.Hours,
+                                None if course.Offered is None else course.Offered,
+                                None if course.Prerequisites is None else course.Prerequisites,
+                                None if course.Corequisites is None else course.Corequisites,
+                                None if course.Requirements is None else course.Requirements,
+                                None if course.Recommendations is None else course.Recommendations,
+                                None if course.GE is None else course.GE,
+                                None if course.SameAs is None else course.SameAs])
+
 
 class Course:
     """
     Represents a course at the University of Iowa
     """
+
     def __init__(self, raw_course):
         """
         Builds a course object from an lxml.html.HtmlElement object representing a course
@@ -201,24 +224,24 @@ class Course:
             return str.replace("'", "''").replace("\"", "''")
 
         return ("INSERT INTO [dbo].[Courses] ([Subject],[Number],[Name],[Description],[Hours],[Offered],[Prerequisites]" \
-        + ",[Corequisites],[Requirements],[Recommendations],[GE],[SameAs]) VALUES " + str(
+                + ",[Corequisites],[Requirements],[Recommendations],[GE],[SameAs]) VALUES " + str(
             ('None' if self.Subject is None else escape(self.Subject),
-                'None' if self.Number is None else escape(self.Number),
-                'None' if self.Name is None else escape(self.Name),
-                'None' if self.Description is None else escape(self.Description),
-                'None' if self.Hours is None else escape(self.Hours),
-                # optional
-                'None' if self.Offered is None else escape(self.Offered),
-                'None' if self.Prerequisites is None else escape(self.Prerequisites),
-                'None' if self.Corequisites is None else escape(self.Corequisites),
-                'None' if self.Requirements is None else escape(self.Requirements),
-                'None' if self.Recommendations is None else escape(self.Recommendations),
-                'None' if self.GE is None else escape(self.GE),
-                'None' if self.SameAs is None else escape(self.SameAs)
-                ))).replace("\"", "'")
+             'None' if self.Number is None else escape(self.Number),
+             'None' if self.Name is None else escape(self.Name),
+             'None' if self.Description is None else escape(self.Description),
+             'None' if self.Hours is None else escape(self.Hours),
+             # optional
+             'None' if self.Offered is None else escape(self.Offered),
+             'None' if self.Prerequisites is None else escape(self.Prerequisites),
+             'None' if self.Corequisites is None else escape(self.Corequisites),
+             'None' if self.Requirements is None else escape(self.Requirements),
+             'None' if self.Recommendations is None else escape(self.Recommendations),
+             'None' if self.GE is None else escape(self.GE),
+             'None' if self.SameAs is None else escape(self.SameAs)
+             ))).replace("\"", "'")
 
 
-def populate_courses():
+def populate_courses_json():
     for subject in subjects:
         department = Department(subject)
         page = requests.get('http://catalog.registrar.uiowa.edu/courses/' + subject.lower() + '/')
@@ -233,4 +256,71 @@ def populate_courses():
         json.dump(department, f, default=lambda o: o.__dict__, indent=4)
 
 
-populate_courses()
+def populate_courses_csv():
+    for subject in subjects:
+        department = Department(subject)
+        page = requests.get('http://catalog.registrar.uiowa.edu/courses/' + subject.lower() + '/')
+        parsed_html = html.fromstring(page.content)
+        raw_courses = parsed_html.xpath('//*[@class="sc_sccoursedescs"]/div')
+
+        for raw_course in raw_courses:
+            course = Course(raw_course)
+            department.add_course(course)
+
+        department.to_csv()
+
+
+def count_column_sizes():
+    largest = {"Name": 0,
+               "Description": 0,
+               "Hours": 0,
+               "Offered": 0,
+               "Prerequisites": 0,
+               "Corequisites": 0,
+               "Requirements": 0,
+               "Recommendations": 0,
+               "GE": 0,
+               "SameAs": 0}
+
+    for subject in subjects:
+        department = Department(subject)
+        page = requests.get('http://catalog.registrar.uiowa.edu/courses/' + subject.lower() + '/')
+        parsed_html = html.fromstring(page.content)
+        raw_courses = parsed_html.xpath('//*[@class="sc_sccoursedescs"]/div')
+
+        for raw_course in raw_courses:
+            course = Course(raw_course)
+
+            if len(course.Name) > largest["Name"]:
+                largest["Name"] = len(course.Name)
+            if len(course.Description) > largest["Description"]:
+                largest["Description"] = len(course.Description)
+            if len(course.Hours) > largest["Hours"]:
+                largest["Hours"] = len(course.Hours)
+            if course.Offered is not None:
+                if len(course.Offered) > largest["Offered"]:
+                    largest["Offered"] = len(course.Offered)
+            if course.Prerequisites is not None:
+                if len(course.Prerequisites) > largest["Prerequisites"]:
+                    largest["Prerequisites"] = len(course.Prerequisites)
+            if course.Corequisites is not None:
+                if len(course.Corequisites) > largest["Corequisites"]:
+                    largest["Corequisites"] = len(course.Corequisites)
+            if course.Requirements is not None:
+                if len(course.Requirements) > largest["Requirements"]:
+                    largest["Requirements"] = len(course.Requirements)
+            if course.Recommendations is not None:
+                if len(course.Recommendations) > largest["Recommendations"]:
+                    largest["Recommendations"] = len(course.Recommendations)
+            if course.GE is not None:
+                if len(course.GE) > largest["GE"]:
+                    largest["GE"] = len(course.GE)
+            if course.SameAs is not None:
+                if len(course.SameAs) > largest["SameAs"]:
+                    largest["SameAs"] = len(course.SameAs)
+
+            department.add_course(course)
+    return (largest)
+
+
+populate_courses_json()
